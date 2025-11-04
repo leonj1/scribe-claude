@@ -1,0 +1,62 @@
+.dashboard-layout {
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  background: #fff;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dashboard-title {
+  margin: 0 !important;
+  color: #1890ff;
+}
+
+.user-avatar {
+  background-color: #1890ff;
+}
+
+.recordings-sider {
+  background: #fafafa;
+  border-right: 1px solid #e8e8e8;
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+}
+
+.main-content {
+  background: #fff;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.metadata-sider {
+  background: #fafafa;
+  border-left: 1px solid #e8e8e8;
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+}
+
+.metadata-panel {
+  padding: 24px;
+}
+
+.metadata-content {
+  margin-top: 16px;
+}
+
+.metadata-content p {
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.metadata-content strong {
+  color: #333;
+}

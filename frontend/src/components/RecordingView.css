@@ -1,0 +1,40 @@
+.recording-view-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 400px;
+}
+
+.recording-view {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.recording-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transcription-section {
+  margin-bottom: 24px;
+}
+
+.transcription-card {
+  background: #fafafa;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.transcription-text {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  color: #333;
+}
+
+.notes-section {
+  margin-top: 24px;
+}
+
+.notes-textarea {
+  resize: vertical;
+}

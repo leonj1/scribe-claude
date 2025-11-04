@@ -1,0 +1,58 @@
+.recordings-list-container {
+  height: 100%;
+}
+
+.recordings-list-header {
+  padding: 16px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.recordings-loading,
+.recordings-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.recording-item {
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 16px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.recording-item:hover {
+  background: #f5f5f5;
+}
+
+.recording-item.selected {
+  background: #e6f7ff;
+  border-left: 3px solid #1890ff !important;
+}
+
+.recording-item-content {
+  width: 100%;
+}
+
+.recording-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.recording-date {
+  font-weight: 500;
+}
+
+.recording-time {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.recording-status {
+  margin-top: 8px;
+}
