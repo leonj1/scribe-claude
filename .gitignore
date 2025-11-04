@@ -86,3 +86,4 @@ dmypy.json
 *.tmp
 *.bak
 *.swp
+./tmp/
