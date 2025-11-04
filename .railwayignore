@@ -1,0 +1,15 @@
+# Ignore docker-compose to prevent Railway from auto-detecting MySQL
+docker-compose.yml
+docker-compose.yaml
+
+# Ignore local development files
+.env
+.env.local
+.env.*.local
+
+# Ignore temporary files
+tmp/
+.claude/
+
+# Ignore git
+.git/
