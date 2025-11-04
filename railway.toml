@@ -1,8 +1,0 @@
-[build]
-builder = "NIXPACKS"
-watchPatterns = ["**/*.py", "**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"]
-
-[deploy]
-numReplicas = 1
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10

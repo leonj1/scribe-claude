@@ -7,7 +7,9 @@ This guide explains how to deploy the Audio Transcription Service to Railway.
 The application will be deployed as three separate services:
 1. **Backend Service** (FastAPI)
 2. **Frontend Service** (React)
-3. **MySQL Database**
+3. **MySQL Database** (provisioned once via Railway Dashboard)
+
+**Important**: The MySQL database should be added only once using Railway's "+ New" → "Database" → "MySQL" option. Do not create multiple MySQL instances.
 
 ## Prerequisites
 
