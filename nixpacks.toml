@@ -1,24 +1,15 @@
-# ⚠️ DEPRECATED: This root-level nixpacks.toml is NOT the correct configuration
-#
-# This file should NOT be used for Railway deployments.
-# Railway should be configured to use the backend/ directory as the root directory.
-#
-# CORRECT SETUP:
-# 1. In Railway dashboard, set "Root Directory" to "backend"
-# 2. Railway will then use backend/nixpacks.toml (which has the correct config)
-#
-# The configuration below is a workaround and causes build issues.
-# It should be removed once Railway is properly configured.
+# Frontend Nixpacks Configuration for Railway
+# This configures the build for the React frontend application
+# For backend deployment, set "Root Directory" to "backend" in Railway dashboard
 
-# DO NOT USE - Use backend/nixpacks.toml instead
 [phases.setup]
-nixPkgs = ["python311", "ffmpeg"]
+nixPkgs = ["nodejs-20_x"]
 
 [phases.install]
-cmds = ["cd backend && python -m pip install -r requirements.txt"]
+cmds = ["cd frontend && npm install"]
 
 [phases.build]
-cmds = ["mkdir -p backend/audio_storage"]
+cmds = ["cd frontend && npm run build"]
 
 [start]
-cmd = "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+cmd = "cd frontend && npx serve -s build -l $PORT"

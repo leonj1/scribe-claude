@@ -1,23 +1,15 @@
-# Railway Configuration for Backend Service
-# This file configures Railway to properly build the backend service from the backend/ subdirectory
+# Railway Configuration for Frontend Service
+# This file configures Railway to properly build the frontend service from the frontend/ subdirectory
 # Documentation: https://docs.railway.app/reference/config-as-code
-
-# IMPORTANT: This configuration assumes you're deploying the backend service.
-# For monorepo setups, you should ALSO set the "Root Directory" in Railway's dashboard to "backend"
-# or use the Railway CLI: railway service settings --root-directory backend
 
 [build]
 # Builder configuration
 builder = "NIXPACKS"
 
-# Watch only backend directory for changes
-watchPaths = ["backend/**"]
+# Watch only frontend directory for changes
+watchPaths = ["frontend/**"]
 
 [deploy]
-# Health check endpoint (FastAPI provides this at /health)
-healthcheckPath = "/health"
-healthcheckTimeout = 100
-
 # Restart policy
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
