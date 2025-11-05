@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     REDIRECT_URI: Optional[str] = "http://localhost:8000/auth/google/callback"
 
     # JWT
+    # NOTE: Replace in production via env var.
     JWT_SECRET: str = "dev-insecure-change-me"
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_MINUTES: int = 10080  # 7 days
