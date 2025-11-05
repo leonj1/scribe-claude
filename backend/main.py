@@ -2,9 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 import os
+import logging
 from database import init_db
 from routers import auth, recordings
 from config import settings
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 # Create FastAPI app
 app = FastAPI(
@@ -41,6 +45,15 @@ async def startup_event():
 
     # Create audio storage directory
     os.makedirs(settings.AUDIO_STORAGE_PATH, exist_ok=True)
+
+    # Validate OAuth configuration
+    if not settings.GOOGLE_CLIENT_ID or not settings.GOOGLE_CLIENT_SECRET:
+        logger.warning(
+            "Google OAuth not configured - authentication endpoints will return errors. "
+            "Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables to enable authentication."
+        )
+    else:
+        logger.info("Google OAuth configured successfully")
 
 
 @app.get("/")

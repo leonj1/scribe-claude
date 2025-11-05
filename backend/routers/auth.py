@@ -14,15 +14,23 @@ router = APIRouter(prefix="/auth", tags=["authentication"])
 
 # Configure OAuth
 oauth = OAuth()
-oauth.register(
-    name='google',
-    client_id=settings.GOOGLE_CLIENT_ID,
-    client_secret=settings.GOOGLE_CLIENT_SECRET,
-    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-    client_kwargs={
-        'scope': 'openid email profile'
-    }
-)
+
+# Helper function to check if OAuth is configured
+def is_oauth_configured() -> bool:
+    """Check if Google OAuth credentials are properly configured"""
+    return bool(settings.GOOGLE_CLIENT_ID and settings.GOOGLE_CLIENT_SECRET)
+
+# Only register OAuth if credentials are configured
+if is_oauth_configured():
+    oauth.register(
+        name='google',
+        client_id=settings.GOOGLE_CLIENT_ID,
+        client_secret=settings.GOOGLE_CLIENT_SECRET,
+        server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+        client_kwargs={
+            'scope': 'openid email profile'
+        }
+    )
 
 
 @router.get("/google/login")
@@ -33,6 +41,11 @@ async def google_login(request: Request):
     Returns:
         Redirect to Google OAuth consent page
     """
+    if not is_oauth_configured():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Google OAuth is not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables."
+        )
     redirect_uri = settings.REDIRECT_URI
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
@@ -49,6 +62,11 @@ async def google_callback(request: Request, db: Session = Depends(get_db)):
     Returns:
         Redirect to frontend with JWT token
     """
+    if not is_oauth_configured():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Google OAuth is not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET environment variables."
+        )
     try:
         # Get access token from Google
         token = await oauth.google.authorize_access_token(request)
