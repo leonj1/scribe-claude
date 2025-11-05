@@ -4,8 +4,8 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Google OAuth (optional for boot)
-    GOOGLE_CLIENT_ID: Optional[str] = ""
-    GOOGLE_CLIENT_SECRET: Optional[str] = ""
+    GOOGLE_CLIENT_ID: Optional[str] = None
+    GOOGLE_CLIENT_SECRET: Optional[str] = None
     REDIRECT_URI: Optional[str] = "http://localhost:8000/auth/google/callback"
 
     # JWT
